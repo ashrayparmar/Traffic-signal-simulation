@@ -1,0 +1,165 @@
+#Question 1 => How can we create ssl certificates, I need one .crt file and one .key file
+I asked this question when I was trying to enable https connectionn in one of my react projects
+
+#GPT Answer
+
+As an AI language model, I don't have the capability to directly create SSL certificates for you. However, I can guide you through the general process of obtaining SSL certificates.
+To obtain an SSL certificate, you typically need to follow these steps:
+
+Determine the type of SSL certificate you require. There are various types, such as single-domain certificates, wildcard certificates, and extended validation certificates. Choose the one that suits your needs.
+Identify a Certificate Authority (CA) that you want to use. Popular CAs include Let's Encrypt, Comodo, and Symantec. Some CAs provide free SSL certificates, while others charge a fee.
+Generate a Certificate Signing Request (CSR) and a private key. The CSR contains information about your organization and the domain name for which you are requesting the certificate. The private key is a secure file that should be kept secret.
+Submit the CSR to the chosen CA. Follow their instructions for the specific method of submitting the CSR. This often involves filling out a form and pasting the CSR content into it.
+Complete any additional verification steps required by the CA. This can involve confirming ownership of the domain or providing additional documentation, depending on the type of certificate you are obtaining.
+Once the CA has verified your request, they will issue the SSL certificate. They typically provide the certificate in a .crt file format.
+Install the SSL certificate on your server or hosting provider. This process varies depending on the server software you are using (e.g., Apache, Nginx) or the hosting platform you are using (e.g., cPanel, AWS).
+During the installation, you will typically need to provide the private key that corresponds to the CSR. This private key should be kept securely, as it is needed to decrypt the SSL traffic.
+It's important to note that SSL certificate generation involves sensitive information and security measures. Therefore, it is advisable to consult the documentation provided by the chosen CA or seek assistance from your system administrator or hosting provider for specific instructions related to your environment.
+
+#Question 2 => I ssh to one VM using ssh ashray@172.16.9.78, it asks me password I enter I am able to login in then, I want to change the password how to do it ?
+Error got when I wanted to change my ssh password
+
+#GPT Answer
+
+To change your password after logging in via SSH, you can use the passwd command. Here's how you can change your password on a Linux system:
+Log in to the VM using SSH:
+`ssh ashray@172.16.9.78`
+Once you're logged in, run the following command to change the password:
+`passwd`
+You'll be prompted to enter your current password. Enter it and press Enter.
+Next, you'll be prompted to enter your new password. Type your new password and press Enter. Note that the password will not be displayed on the screen for security reasons.
+Finally, you'll be asked to re-enter the new password for confirmation. Type the new password again and press Enter.
+
+Question 3 => I have date field in salesforce, if I want to update it to null it gives this error how to resolve this ?
+    message: 'Cannot deserialize instance of date from VALUE_STRING value  or request may be missing a required field at [Source: N/A; line: -1, column: -1][line:-1, column:-1]',
+
+Error when I tried to update date field in salesforce
+
+#GPT Answer
+the error message suggests that you are trying to deserialize a value into a date field in Salesforce, but the value you provided is not a valid date format or it is missing a required field.
+To resolve this issue, you should ensure that you are providing a valid date value or format when updating the date field. Here are a few steps you can follow:
+Verify the date format: Check the expected date format for the date field in Salesforce. It could be in the form of "YYYY-MM-DD" or another specific format. Ensure that the value you are trying to update matches the expected format.
+Handle null values correctly: If you want to update the date field to null, you need to handle it appropriately in your code. Instead of sending a string with the value "null," make sure you're using the appropriate null representation for the programming language or framework you are using. For example, in Java, you can use null as the value for a Date object.
+Check required fields: If the date field has any other required fields associated with it, make sure you are providing values for those fields as well. Check the Salesforce documentation or consult with your Salesforce administrator to determine if any additional fields are required when updating the date field.
+Validate the data before updating: Before attempting to update the date field, validate the data to ensure it is in the correct format and includes all required fields. This step will help you catch any issues before making the update request.
+
+Question 4 => By mistake I added this command, export NODE_OPTIONS=--openssl-legacy-provider how to revert this ?
+
+Error when I ran this command by mistake and my react application was not running
+
+#GPT Answer
+
+To revert the command you added, you can unset the environment variable NODE_OPTIONS. Here's how you can do it:
+Open a terminal or command prompt.
+Run the following command to unset the NODE_OPTIONS variable:
+
+`unset NODE_OPTIONS`
+
+Question 5 => I did db.collection name now how can I see what all things are present inside the file
+
+I wanted to find something in database in mongodb
+
+#GPT Answer
+To view the contents of a collection in the MongoDB shell, you can use the find() method. Here's an example:
+
+> use yourDatabaseName
+switched to db yourDatabaseName
+> db.collectionName.find()
+
+Question 6 => I have a debug.log file I want to see the content after "2023-05-04" how to use grep to display the data after this word?
+
+I wanted to search somthing in debug.log file
+
+#GPT Answer
+You can use the grep command with the -A flag to display the lines after the search term. Here is an example command to display all the lines after "2023-05-04" in a file called "debug.log":
+
+`grep -A 999999 "2023-05-04" debug.log`
+
+Question 7 => Write and excel formula to Derive data in "Manual Transformation" sheet in field "Country" by writing a formula
+to lookup "BillingCountry" field from "SF Data" sheet with "Description" field in "country_lookup" sheet if 
+
+"Description" matches with "BillingCountry" get "Code" field from "country lookup" sheet 
+
+Asked GPT to write excelf formula
+
+#GPT Answer
+
+Assuming the "SF Data" sheet has a header row and the "BillingCountry" field is in column B, and the "country_lookup" sheet has a header row and the "Description" and "Code" fields are in columns A and B respectively, you can use the following Excel formula in the "Manual Transformation" sheet to get the country code:
+
+`=IFERROR(VLOOKUP(B2, country_lookup!A:B, 2, FALSE), "")`
+
+Question 8 => write a sql query to return all data where we have duplicates name and both duplicates name have street fields as same 
+Took help from GPT to write an sql query
+
+#GPT Answer
+Assuming that the data is stored in a table called customers and the columns for name and street are called name and street respectively, the SQL query to return all data where we have duplicate names and both duplicates have the same street can be written as:
+`SELECT *
+FROM customers
+WHERE name IN (
+    SELECT name
+    FROM customers
+    GROUP BY name
+    HAVING COUNT(*) > 1
+) AND street IN (
+    SELECT street
+    FROM customers
+    GROUP BY street
+    HAVING COUNT(*) > 1
+)
+GROUP BY name, street
+HAVING COUNT(*) > 1;`
+
+Question 9 => where can I check the history of query logs in aws rds
+I wanted to check rds history to debug support issues
+
+#GPT Answer
+In AWS RDS, you can check the history of query logs by enabling and accessing the "Amazon RDS database log files". Follow these steps to enable query logging in RDS:
+
+Open the AWS Management Console and navigate to the RDS dashboard.
+Select your RDS database instance.
+Click on the "Logs & events" tab.
+Under "Log exports", click on "Create export task".
+Select "log type" as "PostgreSQL log" or "MySQL slow log", depending on your database engine.
+Select a "S3 bucket" to store the logs.
+Set up an optional "SNS topic" to receive notifications about log exports.
+Click "Create task" to start the log export.
+
+Question 10 => what is this error [object Object]: Agreement__c.Product__c FROM Agreement__c GROUP BY Agreement__c.Product__c ^ ERROR at Row:1:Column:59 field 'Product__c' can not be grouped in a query call
+
+Got the error when GROUP BY wasn't working in SOQL
+
+#GPT Answer
+The error message [object Object]: Agreement__c.Product__c FROM Agreement__c GROUP BY Agreement__c.Product__c ^ ERROR at Row:1:Column:59 field 'Product__c' can not be grouped in a query call indicates that you are trying to group a field in your SOQL query that cannot be grouped.
+
+In Salesforce, not all field types can be used in a GROUP BY clause. The field type of the field you are trying to group, Agreement__c.Product__c, must be one of the following:
+
+Text
+Picklist
+Number
+Date
+If the field type is not one of these types, you will receive an error similar to the one you are encountering. To resolve this error, you will need to either modify the field type of the Agreement__c.Product__c field to be one of the allowed types, or group by a different field that is of an allowed type.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
